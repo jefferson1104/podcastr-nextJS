@@ -9,6 +9,7 @@ import { convertDurationToTimeString } from '../../utils/convertDurationToTimeSt
 
 import styles from './episode.module.scss';
 import { usePlayer } from '../../contexts/PlayerContext';
+import { srLatn } from 'date-fns/locale';
 
 
 type Episode = {
@@ -39,7 +40,7 @@ export default function Episode({ episode }: EpisodeProps) {
       <div className={styles.thumbnailContainer}>
         <Link href="/">
           <button type="button">
-            <img src="/arrow-left.svg" alt="Voltar"/>
+            <img src="/arrow-left.svg" alt="levo"/>
           </button>
         </Link>
         <Image
@@ -49,7 +50,7 @@ export default function Episode({ episode }: EpisodeProps) {
           objectFit="cover"
         />
         <button type="button" onClick={() => play(episode)}>
-          <img src="/play.svg" alt="Tocar episódio" />
+          <img src="/play.svg" alt="Pusti epizodu" />
         </button>
       </div>
 
@@ -103,7 +104,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
       title: data.title,
       thumbnail: data.thumbnail,
       members: data.members,
-      publishedAt: format(parseISO(data.published_at), 'd MMM yy', { locale: ptBR }),
+      publishedAt: format(parseISO(data.published_at), 'd MMM yy', { locale: srLatn }),
       duration: Number(data.file.duration),
       durationAsString: convertDurationToTimeString(Number(data.file.duration)),
       description: data.description,

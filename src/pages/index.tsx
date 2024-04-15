@@ -8,6 +8,7 @@ import { api } from '../services/api';
 import { convertDurationToTimeString } from '../utils/convertDurationToTimeString';
 import { usePlayer } from '../contexts/PlayerContext';
 import styles from './home.module.scss';
+import { srLatn } from 'date-fns/locale';
 
 type Episode = {
   id: string;
@@ -33,11 +34,11 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
   return (
     <div className={styles.homePage}>
       <Head>
-        <title>Podcastr</title>
+        <title>Palilula podcast</title>
       </Head>
       
       <section className={styles.latestEpisodes}>
-        <h2>Últimos lançamentos</h2>
+        <h2>Najnovije epizode</h2>
 
         <ul>
           {latestEpisodes.map((episode, index) => {
@@ -70,16 +71,16 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
       </section>
 
       <section className={styles.allEpisodes}>
-          <h2>Todos episódios</h2>
+          <h2>Sve epizode</h2>
 
           <table cellSpacing={0}>
             <thead>
               <tr>
                 <th></th>
-                <th>Podcast</th>
-                <th>Integrantes</th>
-                <th>Data</th>
-                <th>Duração</th>
+                <th>Podkast</th>
+                <th>Gosti</th>
+                <th>Datum</th>
+                <th>Dužina</th>
                 <th></th>
               </tr>
             </thead>
@@ -106,7 +107,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                     <td>{episode.durationAsString}</td>
                     <td>
                       <button type="button" onClick={() => playList(episodeList, index + latestEpisodes.length)}>
-                        <img src="play-green.svg" alt="Tocar episódio" />
+                        <img src="play-green.svg" alt="Pusti" />
                       </button>
                     </td>
                   </tr>
@@ -136,7 +137,7 @@ export const getStaticProps: GetStaticProps = async () => {
       title: episode.title,
       thumbnail: episode.thumbnail,
       members: episode.members,
-      publishedAt: format(parseISO(episode.published_at), 'd MMM yy', { locale: ptBR }),
+      publishedAt: format(parseISO(episode.published_at), 'd MMM yy', { locale: srLatn }),
       duration: Number(episode.file.duration),
       durationAsString: convertDurationToTimeString(Number(episode.file.duration)),
       url: episode.file.url
