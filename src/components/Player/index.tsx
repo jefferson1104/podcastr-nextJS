@@ -68,7 +68,7 @@ export function Player() {
     <div className={styles.playerContainer}>
       <header>
         <img src="/playing.svg" alt="Tocando agora"/>
-        <strong>Tocando agora</strong>
+        <strong>Pušta se</strong>
       </header>
 
       { episode ? (
@@ -84,7 +84,7 @@ export function Player() {
         </div>
       ) : (
         <div className={styles.emptyPlayer}>
-          <strong>Selecione um podcast para ouvir</strong>
+          <strong>Izaberite podkast za slušanje</strong>
         </div>
       ) }
 
@@ -128,20 +128,20 @@ export function Player() {
             onClick={toggleShuffle} 
             className={isShuffling ? styles.isActive : ''}
           >
-            <img src="/shuffle.svg" alt="Embaralhar"/>
+            <img src="/shuffle.svg" alt="Shuffle"/>
           </button>
           <button type="button" onClick={playPrevious} disabled={!episode || !hasPrevious}>
-            <img src="/play-previous.svg" alt="Tocar anterior"/>
+            <img src="/play-previous.svg" alt="Pusti prethodno"/>
           </button>
           <button type="button" className={styles.playButton} onClick={togglePlay} disabled={!episode}>
             { isPlaying ? (
-              <img src="/pause.svg" alt="Tocar"/>
+              <img src="/pause.svg" alt="Pauziraj"/>
             ) : (
-              <img src="/play.svg" alt="Tocar"/>
+              <img src="/play.svg" alt="Pusti"/>
             ) }
           </button>
           <button type="button" onClick={playNext} disabled={!episode || !hasNext}>
-            <img src="/play-next.svg" alt="Tocar próxima" />
+            <img src="/play-next.svg" alt="Pusti sledeće" />
           </button>
           <button 
             type="button" 
